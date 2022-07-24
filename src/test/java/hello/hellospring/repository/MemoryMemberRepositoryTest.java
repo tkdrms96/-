@@ -1,13 +1,17 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.service.MemberService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MemoryMemberRepositoryTest {
 
         MemberRepository memberRepository = new MemoryMemberRepository();
 
+        MemberService memberService = new MemberService();
         @Test
         public void save(){
             Member member = new Member();
@@ -32,6 +36,15 @@ class MemoryMemberRepositoryTest {
 
             Member result = memberRepository.findByName("spring1").get();
 
+        }
+
+        @Test
+        public void 중복_회원_제외(){
+            Member member1 = new Member();
+            member1.setName("spring");
+
+ //           memberService.join(member1);/*
+//            IllegalAccessError e = assertThrows(IllegalAccessError.class, ());*/
         }
 
     }
